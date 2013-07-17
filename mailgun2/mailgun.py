@@ -16,13 +16,14 @@ class Mailgun(object):
         # sanity checks
         assert (text or html)
 
-        data = {}
-        data['from'] = from_email
-        data['subject'] = subject or ''
-        data['to'] = to
-        data['cc'] = cc or []
-        data['bcc'] = bcc or []
-        data['text'] = text or ''
-        data['html'] = html or ''
+        data = {
+            'from': from_email,
+            'to': to,
+            'cc': cc or [],
+            'bcc': bcc or [],
+            'subject': subject or '',
+            'text': text or '',
+            'html': html or '',
+        }
 
         return self.post('/messages', data)
