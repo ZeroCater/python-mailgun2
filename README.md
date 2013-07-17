@@ -1,8 +1,8 @@
-mailgun2
-========
+python-mailgun2
+===============
 
-A super simple API for interacting with [Mailgun](http://www.mailgun.com/). Currently only supports
-sending messages. Powered by
+A super simple Python API for interacting with [Mailgun](http://www.mailgun.com/).
+Currently only supports sending messages. Powered by
 [Requests](http://docs.python-requests.org/en/latest/)
 
 Python 3 support should be there but is currently untested.
