@@ -3,7 +3,7 @@ python-mailgun2
 
 A super simple Python API for interacting with [Mailgun](http://www.mailgun.com/).
 Currently only supports sending messages. Powered by
-[Requests](http://docs.python-requests.org/en/latest/)
+[Requests](http://docs.python-requests.org/en/latest/).
 
 Python 3 support should be there but is currently untested.
 
@@ -11,8 +11,12 @@ Usage:
 
     from mailgun2 import Mailgun
     mailer = Mailgun('apikey', 'example.mailgun.org')
-    mailer.send_message('from@yourdomain.com', ['to@you.com',
-'others@you.com'], subject='Hi!', text='Sweet.')
+    mailer.send_message(
+        'from@yourdomain.com',
+        ['to@you.com', 'others@you.com'],
+        subject='Hi!',
+        text='Sweet.'
+    )
 
 Optional arguments:
 
