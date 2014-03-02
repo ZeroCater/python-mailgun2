@@ -10,8 +10,9 @@ class Mailgun(object):
         self.auth = ('api', api_key)
         self.base_url = '{0}/{1}'.format(BASE_URL, domain)
 
-    def post(self, path, data):
-        return requests.post(self.base_url + path, auth=self.auth, data=data)
+    def post(self, path, data, include_domain=True):
+        url = self.base_url if include_domain else BASE_URL
+        return requests.post(url + path, auth=self.auth, data=data)
 
     def send_message(self, from_email, to, cc=None, bcc=None,
                      subject=None, text=None, html=None, tags=None):
@@ -41,7 +42,7 @@ class Mailgun(object):
         if access_level and access_level in ['readonly', 'members', 'everyone']:
             data['access_level'] = access_level
 
-        return self.post('/lists', data)
+        return self.post('/lists', data, include_domain=False)
 
     def add_list_member(self, list_name, address, name=None, params=None,
                         subscribed=True, upsert=False):
@@ -58,4 +59,4 @@ class Mailgun(object):
         if upsert:
             data['upsert'] = 'yes'
 
-        return self.post('/lists/%s/members' % list_name, data)
+        return self.post('/lists/%s/members' % list_name, data, include_domain=False)
