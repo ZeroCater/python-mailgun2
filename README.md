@@ -7,6 +7,12 @@ Currently only supports sending messages. Powered by
 
 Python 3 support should be there but is currently untested.
 
+Installation:
+
+```shell
+pip install mailgun2
+```
+
 Usage:
 
 ```python
@@ -20,6 +26,12 @@ mailer.send_message(
     )
 ```
 
+Required arguments:
+```
+from_email: string of email address to set as sender
+to: list or string of email address to send to
+```
+
 Optional arguments:
 
 ```
@@ -29,8 +41,10 @@ html: string HTML of the email. Either text or html is required.
 cc: list of cc addresses.
 bcc: list of bcc addresses.
 tags: list of mailgun tags to associate with the email.
+reply_to: Convenience argument for setting the Reply-To header
+headers: Extra headers for messages
+inlines: List of file paths to attach inline to the message
+attachments: List of (file name, content type, file handle) as a multipart attachment
 ```
-
-Coming soon: attachments, inlines, and all the fancy Mailgun features.
 
 Pull requests welcome!
