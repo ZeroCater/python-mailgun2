@@ -17,4 +17,8 @@ setup(
     install_requires=[
         'requests>=1.2.3',
     ],
+    test_suite="tests",
+    tests_require=[
+        'mock>=0.8',
+    ],
 )

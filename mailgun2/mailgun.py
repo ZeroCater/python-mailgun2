@@ -10,12 +10,13 @@ class Mailgun(object):
         self.auth = ('api', api_key)
         self.base_url = '{0}/{1}'.format(BASE_URL, domain)
 
-    def post(self, path, data, include_domain=True):
+    def post(self, path, data, files=None, include_domain=True):
         url = self.base_url if include_domain else BASE_URL
-        return requests.post(url + path, auth=self.auth, data=data)
+        return requests.post(url + path, auth=self.auth, data=data, files=files)
 
     def send_message(self, from_email, to, cc=None, bcc=None,
-                     subject=None, text=None, html=None, tags=None):
+                     subject=None, text=None, html=None, tags=None,
+                     reply_to=None, headers=None, inlines=None, attachments=None):
         # sanity checks
         assert (text or html)
 
@@ -29,7 +30,20 @@ class Mailgun(object):
             'html': html or '',
         }
 
-        return self.post('/messages', data)
+        if reply_to:
+            data['h:Reply-To'] = reply_to
+        if headers:
+            for k, v in headers.items():
+                data["h:%s" % k] = v
+        files = []
+        if inlines:
+            for filename in inlines:
+                files.append(('inline', open(filename)))
+        if attachments:
+            for filename, content_type, content in attachments:
+                files.append(('attachment', (filename, content, content_type)))
+
+        return self.post('/messages', data, files=files)
 
     def create_list(self, address, name=None, description=None, access_level=None):
         data = {'address': address}
