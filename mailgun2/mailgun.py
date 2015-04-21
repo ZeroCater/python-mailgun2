@@ -16,7 +16,7 @@ class Mailgun(object):
 
     def send_message(self, from_email, to, cc=None, bcc=None,
                      subject=None, text=None, html=None, tags=None,
-                     reply_to=None, headers=None, inlines=None, attachments=None):
+                     reply_to=None, headers=None, inlines=None, attachments=None, campaign_id=None):
         # sanity checks
         assert (text or html)
 
@@ -35,6 +35,8 @@ class Mailgun(object):
         if headers:
             for k, v in headers.items():
                 data["h:%s" % k] = v
+        if campaign_id:
+            data['o:campaign'] = campaign_id
         files = []
         if inlines:
             for filename in inlines:
