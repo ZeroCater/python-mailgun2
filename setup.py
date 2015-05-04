@@ -15,7 +15,7 @@ setup(
     download_url="https://github.com/ZeroCater/python-mailgun2/archive/%s.tar.gz" % mailgun2.__version__,
     keywords=['mailgun', 'email'],
     install_requires=[
-        'requests>=1.2.3',
+        'requests>=2.6.0',
     ],
     test_suite="tests",
     tests_require=[
