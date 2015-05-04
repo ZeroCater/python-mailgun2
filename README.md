@@ -2,6 +2,7 @@ python-mailgun2
 ===============
 
 [![Code Climate](https://codeclimate.com/github/ZeroCater/python-mailgun2/badges/gpa.svg)](https://codeclimate.com/github/ZeroCater/python-mailgun2)
+[![Dependency Status](https://gemnasium.com/almlab/adaptml.svg)](https://gemnasium.com/almlab/adaptml)
 
 A super simple Python API for interacting with [Mailgun](http://www.mailgun.com/).
 Currently only supports sending messages. Powered by
